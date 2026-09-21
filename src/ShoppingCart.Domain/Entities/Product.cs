@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ShoppingCart.Domain.Entities
-{
+﻿
+namespace ShoppingCart.Domain.Entities;
     public class Product
     {
         public int Id { get; set; }
@@ -15,4 +11,4 @@ namespace ShoppingCart.Domain.Entities
         public int Stock { get; set; }
         public byte[] RowVersion { get; set; } = Array.Empty<byte>();
     }
-}
+

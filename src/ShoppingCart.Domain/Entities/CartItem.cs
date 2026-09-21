@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿
 
-namespace ShoppingCart.Domain.Entities
-{
+namespace ShoppingCart.Domain.Entities;
     public class CartItem
     {
         public int Id { get; set; }
@@ -13,4 +10,4 @@ namespace ShoppingCart.Domain.Entities
         public Product Product { get; set; } = null!;
         public int Quantity { get; set; }
     }
-}
+
