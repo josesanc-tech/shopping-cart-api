@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ShoppingCart.Domain.Constants;
 using ShoppingCart.Domain.Entities;
 
 namespace ShoppingCart.Infrastructure.Data;

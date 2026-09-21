@@ -52,10 +52,20 @@ public class AppDbContext : DbContext, IApplicationDbContext
             e.Property(i => i.Subtotal).HasPrecision(18, 2);
         });
 
-        // ----- Concurrencia
-        modelBuilder.Entity<Product>()
-            .Property(p => p.RowVersion)
-            .IsRowVersion();
+        var isSqlite = Database.ProviderName?.Contains("Sqlite", StringComparison.OrdinalIgnoreCase) == true;
+
+        if (isSqlite)
+        {
+            modelBuilder.Entity<Product>()
+                .Property(p => p.RowVersion)
+                .HasDefaultValue(new byte[] { 0 });
+        }
+        else
+        {
+            modelBuilder.Entity<Product>()
+                .Property(p => p.RowVersion)
+                .IsRowVersion();
+        }
 
         modelBuilder.Entity<Cart>()
             .HasOne(c => c.User)

@@ -1,5 +1,4 @@
-﻿
-namespace ShoppingCart.Domain.Entities;
+﻿namespace ShoppingCart.Domain.Constants;
     public static class Roles
     {
         public const string Customer = "Customer";

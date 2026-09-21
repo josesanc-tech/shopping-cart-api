@@ -1,4 +1,6 @@
 ﻿
+using ShoppingCart.Domain.Constants;
+
 namespace ShoppingCart.Domain.Entities;
     public class User
     {
