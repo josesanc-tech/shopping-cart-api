@@ -16,5 +16,10 @@ namespace ShoppingCart.Application.Common;
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
         Task<Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction> BeginTransactionAsync(
             CancellationToken cancellationToken = default);
-    }
+
+         Task<int> TryDecreaseProductStockAsync(
+            int productId,
+            int quantity,
+            CancellationToken cancellationToken = default);
+}
 

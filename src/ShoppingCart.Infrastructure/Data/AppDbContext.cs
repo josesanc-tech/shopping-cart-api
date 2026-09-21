@@ -20,6 +20,18 @@ public class AppDbContext : DbContext, IApplicationDbContext
        CancellationToken cancellationToken = default)
        => Database.BeginTransactionAsync(cancellationToken);
 
+    public async Task<int> TryDecreaseProductStockAsync(
+    int productId,
+    int quantity,
+    CancellationToken cancellationToken = default)
+    {
+        return await Database.ExecuteSqlInterpolatedAsync(
+            $@"UPDATE Products
+           SET Stock = Stock - {quantity}
+           WHERE Id = {productId} AND Stock >= {quantity}",
+            cancellationToken);
+    }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

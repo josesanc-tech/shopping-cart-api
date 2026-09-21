@@ -21,6 +21,7 @@ builder.Services.AddScoped<IApplicationDbContext>(sp =>
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<CartService>();
+builder.Services.AddScoped<OrderService>();
 
 // ---------- JWT 
 var jwtKey = builder.Configuration["Jwt:Key"]

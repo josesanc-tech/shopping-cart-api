@@ -18,7 +18,9 @@ public class CartService
     public async Task<CartResponse> GetCartAsync(int userId)
     {
         var cart = await LoadCartAsync(userId);
-        return BuildResponse(cart);
+        return cart is null
+        ? EmptyCart()
+        : BuildResponse(cart);
     }
 
     public async Task<CartResponse> AddItemAsync(int userId, AddCartItemRequest request)
@@ -130,4 +132,7 @@ public class CartService
 
         return new CartResponse(items, subtotal, discount, total);
     }
+
+    private static CartResponse EmptyCart()
+    => new(Array.Empty<CartItemResponse>(), 0m, 0m, 0m);
 }
