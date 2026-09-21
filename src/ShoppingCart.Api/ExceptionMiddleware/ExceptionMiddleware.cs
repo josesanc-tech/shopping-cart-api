@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.EntityFrameworkCore;
 using ShoppingCart.Application.Exceptions;
 
 namespace ShoppingCart.Api.Middleware;
@@ -25,13 +26,18 @@ public class ExceptionMiddleware
         {
             await WriteProblemAsync(context, StatusCodes.Status404NotFound, ex.Message);
         }
-        catch (InsufficientStockException ex)
+        catch (ConflictException ex)   // captura InsufficientStockException también (hereda)
         {
             await WriteProblemAsync(context, StatusCodes.Status409Conflict, ex.Message);
         }
         catch (BadRequestException ex)
         {
             await WriteProblemAsync(context, StatusCodes.Status400BadRequest, ex.Message);
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            await WriteProblemAsync(context, StatusCodes.Status409Conflict,
+                "El producto fue modificado por otro usuario. Recarga e intenta de nuevo.");
         }
         catch (Exception ex)
         {
