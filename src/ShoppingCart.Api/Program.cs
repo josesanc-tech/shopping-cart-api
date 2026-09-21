@@ -20,6 +20,7 @@ builder.Services.AddScoped<IApplicationDbContext>(sp =>
 // ---------- Servicios de aplicación ----------
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<ProductService>();
+builder.Services.AddScoped<CartService>();
 
 // ---------- JWT 
 var jwtKey = builder.Configuration["Jwt:Key"]
@@ -53,7 +54,7 @@ builder.Services.AddSwaggerGen(options =>
     {
         Title = "Shopping Cart API",
         Version = "v1",
-        Description = "API para prueba técnica .NET 10 + Angular 22"
+        Description = "carrito de compras"
     });
 
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -63,7 +64,7 @@ builder.Services.AddSwaggerGen(options =>
         Scheme = "bearer",
         BearerFormat = "JWT",
         In = ParameterLocation.Header,
-        Description = "Ingresa el token JWT (sin la palabra 'Bearer')."
+        Description = "Ingresa el token JWT."
     });
 
     options.AddSecurityRequirement(document => new OpenApiSecurityRequirement
