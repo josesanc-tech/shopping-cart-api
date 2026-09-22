@@ -7,6 +7,11 @@ API REST de carrito de compras con autenticación JWT.
 ---
 
 ## Requisitos previos
+# 1. Clonar el Repositorio
+git clone https://github.com/josesanc-tech/shopping-cart-api.git
+cd shopping-cart-api
+
+git checkout develop
 
 ### Opción Docker (recomendada)
 
